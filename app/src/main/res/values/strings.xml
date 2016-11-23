@@ -7,4 +7,5 @@
     <string name="number_of_comments">Number of comments: </string>
     <string name="error">Error, check your internet connection</string>
     <string name="top_story_detail">TopStoryDetail</string>
+    <string name="no_data_available">No data available</string>
 </resources>
