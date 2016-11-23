@@ -10,6 +10,7 @@ import com.fentury.testapp.model.Model;
 import com.fentury.testapp.utils.StringFormater;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Vadim on 19.11.2016.
@@ -31,18 +32,16 @@ public class TopStoryDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_story);
         model = getIntent().getParcelableExtra("key");
+        ButterKnife.bind(this);
         populateTextViews();
+
     }
 
     private void populateTextViews() {
         StringFormater stringFormater = new StringFormater(this);
-        name = (TextView) findViewById(R.id.name);
         name.setText(stringFormater.formatString(model.getTitle(), R.string.name));
-        score = (TextView) findViewById(R.id.score);
         score.setText(stringFormater.formatString(model.getScore().toString(), R.string.score));
-        creator = (TextView) findViewById(R.id.creator);
         creator.setText(stringFormater.formatString(model.getBy(), R.string.creator));
-        numberOfComments = (TextView) findViewById(R.id.numberOfComments);
         numberOfComments.setText(stringFormater.formatString(model.getDescendants().toString(), R.string.number_of_comments));
     }
 }

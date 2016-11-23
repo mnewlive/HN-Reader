@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">TestApp</string>
     <string name="creator">Username: </string>
-    <string name="name">Title:</string>
-    <string name="score">Score:</string>
-    <string name="date">Date:</string>
-    <string name="number_of_comments">Number of comments:</string>
-    <string name="save_id">Сохраняем Id</string>
+    <string name="name">Title: </string>
+    <string name="score">Score: </string>
+    <string name="date">Date: </string>
+    <string name="number_of_comments">Number of comments: </string>
+    <string name="error">Error, check your internet connection</string>
 </resources>

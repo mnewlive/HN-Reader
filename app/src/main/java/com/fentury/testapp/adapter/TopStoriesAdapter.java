@@ -3,6 +3,8 @@ package com.fentury.testapp.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,8 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 /**
  * Created by Vadim on 19.11.2016.
@@ -26,7 +30,6 @@ import butterknife.BindView;
 public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.ViewHolder> {
     private List<Model> topStoriesList;
     private Context context;
-
 
     public TopStoriesAdapter(List<Model> topStoriesList, Context context) {
         this.context = context;
@@ -40,7 +43,7 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(final TopStoriesAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(final TopStoriesAdapter.ViewHolder viewHolder, final int i) {
         viewHolder.storyTitle.setText(topStoriesList.get(i).getTitle());
         viewHolder.storyScore.setText(String.valueOf(topStoriesList.get(i).getScore()));
         viewHolder.storyCreator.setText(topStoriesList.get(i).getBy());
@@ -50,11 +53,22 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.Vi
         viewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, TopStoryDetailActivity.class);
-                intent.putExtra("key", topStoriesList.get(viewHolder.getAdapterPosition()));
-                context.startActivity(intent);
+                SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                SharedPreferences.Editor ed = sharedPreferences.edit();
+                ed.putInt("id", i);
+                ed.apply();
+                startActivity(viewHolder);
             }
         });
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        int id = sharedPreferences.getInt("id", -1);
+        if (id == i) {
+            viewHolder.storyTitle.setTextColor(Color.argb(100, 0, 0, 0));
+            viewHolder.storyScore.setTextColor(Color.argb(100, 0, 0, 0));
+            viewHolder.storyCreator.setTextColor(Color.argb(100, 0, 0, 0));
+            viewHolder.storyNumberOfComments.setTextColor(Color.argb(100, 0, 0, 0));
+            viewHolder.storyDate.setTextColor(Color.argb(100, 0, 0, 0));
+        }
     }
 
     @Override
@@ -74,17 +88,17 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.Vi
         @BindView(R.id.storyDate)
         TextView storyDate;
         private View view;
-        private SharedPreferences sharedPreferences;
-        final String ID = context.getString(R.string.save_id);
 
         public ViewHolder(View view) {
             super(view);
-            storyTitle = (TextView) view.findViewById(R.id.storyTitle);
-            storyScore = (TextView) view.findViewById(R.id.storyScore);
-            storyCreator = (TextView) view.findViewById(R.id.storyCreator);
-            storyNumberOfComments = (TextView) view.findViewById(R.id.storyNumberOfComments);
-            storyDate = (TextView) view.findViewById(R.id.storyDate);
+            ButterKnife.bind(this, view);
             this.view = view;
         }
+    }
+
+    public void startActivity(TopStoriesAdapter.ViewHolder viewHolder) {
+        Intent intent = new Intent(context, TopStoryDetailActivity.class);
+        intent.putExtra("key", topStoriesList.get(viewHolder.getAdapterPosition()));
+        context.startActivity(intent);
     }
 }

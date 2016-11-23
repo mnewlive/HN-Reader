@@ -18,7 +18,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.TopStoryDetailActivity" />
+        <activity
+            android:name=".activity.TopStoryDetailActivity"
+            android:label="TopStoryDetail"
+            android:parentActivityName=".activity.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.fentury.testapp.activity.MainActivity"/>
+        </activity>
     </application>
 
 </manifest>

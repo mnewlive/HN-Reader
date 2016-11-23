@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         initViews();
         initRetrofit();
         loadJSON();
@@ -45,12 +47,10 @@ public class MainActivity extends AppCompatActivity {
                 .baseUrl(Constants.BASE_URl)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         request = retrofit.create(StoriesApi.class);
     }
 
     private void initViews() {
-        recyclerView = (RecyclerView) findViewById(R.id.card_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         topStoriesAdapter = new TopStoriesAdapter(models, this);
         recyclerView.setAdapter(topStoriesAdapter);
@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
                 topStories = response.body();
                 for (Integer id : topStories) {
                     request.getTopStore(id).enqueue(new Callback<Model>() {
-
                         @Override
                         public void onResponse(Call<Model> call, Response<Model> response) {
                             models.add(response.body());
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<List<Integer>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG).show();
             }
         });
     }

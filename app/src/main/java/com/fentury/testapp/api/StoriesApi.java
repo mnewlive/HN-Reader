@@ -15,7 +15,6 @@ import retrofit2.http.Path;
 public interface StoriesApi {
     @GET("v0/topstories.json")
     Call<List<Integer>> getTopStories();
-//    Call<TopStories> getTopStories();
 
     @GET("v0/item/{id}.json")
     Call<Model> getTopStore(@Path("id") int id);
