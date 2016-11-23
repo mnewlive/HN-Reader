@@ -22,7 +22,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
 /**
  * Created by Vadim on 19.11.2016.
  */
@@ -55,19 +54,19 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.Vi
             public void onClick(View view) {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
                 SharedPreferences.Editor ed = sharedPreferences.edit();
-                ed.putInt("id", i);
+                ed.putInt(Constants.ID, i);
                 ed.apply();
                 startActivity(viewHolder);
             }
         });
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        int id = sharedPreferences.getInt("id", -1);
+        int id = sharedPreferences.getInt(Constants.ID, -1);
         if (id == i) {
-            viewHolder.storyTitle.setTextColor(Color.argb(100, 0, 0, 0));
-            viewHolder.storyScore.setTextColor(Color.argb(100, 0, 0, 0));
-            viewHolder.storyCreator.setTextColor(Color.argb(100, 0, 0, 0));
-            viewHolder.storyNumberOfComments.setTextColor(Color.argb(100, 0, 0, 0));
-            viewHolder.storyDate.setTextColor(Color.argb(100, 0, 0, 0));
+            viewHolder.storyTitle.setTextColor(Color.GRAY);
+            viewHolder.storyScore.setTextColor(Color.GRAY);
+            viewHolder.storyCreator.setTextColor(Color.GRAY);
+            viewHolder.storyNumberOfComments.setTextColor(Color.GRAY);
+            viewHolder.storyDate.setTextColor(Color.GRAY);
         }
     }
 
@@ -98,7 +97,7 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.Vi
 
     public void startActivity(TopStoriesAdapter.ViewHolder viewHolder) {
         Intent intent = new Intent(context, TopStoryDetailActivity.class);
-        intent.putExtra("key", topStoriesList.get(viewHolder.getAdapterPosition()));
+        intent.putExtra(Constants.KEY, topStoriesList.get(viewHolder.getAdapterPosition()));
         context.startActivity(intent);
     }
 }

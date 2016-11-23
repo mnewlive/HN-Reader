@@ -7,4 +7,6 @@ package com.fentury.testapp.utils;
 public class Constants {
     public static final String BASE_URl = "https://hacker-news.firebaseio.com/";
     public static final String DATE_FORMAT = "MM/dd/yyyy HH:mm";
+    public static final String KEY = "key";
+    public static final String ID = "id";
 }

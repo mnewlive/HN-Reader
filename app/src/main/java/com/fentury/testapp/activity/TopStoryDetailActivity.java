@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.fentury.testapp.R;
 import com.fentury.testapp.model.Model;
+import com.fentury.testapp.utils.Constants;
 import com.fentury.testapp.utils.StringFormater;
 
 import butterknife.BindView;
@@ -31,10 +32,9 @@ public class TopStoryDetailActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_story);
-        model = getIntent().getParcelableExtra("key");
+        model = getIntent().getParcelableExtra(Constants.KEY);
         ButterKnife.bind(this);
         populateTextViews();
-
     }
 
     private void populateTextViews() {

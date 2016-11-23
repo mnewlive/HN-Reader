@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".activity.TopStoryDetailActivity"
-            android:label="TopStoryDetail"
+            android:label="@string/top_story_detail"
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
