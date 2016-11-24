@@ -172,4 +172,20 @@ public class Model implements Parcelable {
             return new Model[size];
         }
     };
+
+
+    public String getKidsAsString() {
+        if (kids == null || kids.isEmpty()) {
+            return "";
+        } else {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 0; i < kids.size(); i++) {
+                stringBuilder.append(kids.get(i));
+                if (i + 1 != kids.size()) {
+                    stringBuilder.append("\n");
+                }
+            }
+            return stringBuilder.toString();
+        }
+    }
 }

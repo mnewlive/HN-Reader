@@ -56,7 +56,7 @@ public class TopStoryDetailActivity extends AppCompatActivity {
         StringFormater stringFormater = new StringFormater(this);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.DATE_FORMAT);
         name.setText(stringFormater.formatString(model.getTitle(), R.string.name));
-        kids.setText(stringFormater.formatString(model.getKids().toString(), R.string.kids));
+        kids.setText(stringFormater.formatString(model.getKidsAsString(), R.string.kids));
         id.setText(stringFormater.formatString(model.getId().toString(), R.string.id));
         time.setText(stringFormater.formatString((simpleDateFormat.format(model.getTime() * 1000L)), R.string.time));
         type.setText(stringFormater.formatString(model.getType(), R.string.type));
