@@ -3,6 +3,7 @@ package com.fentury.testapp.activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.fentury.testapp.R;
@@ -27,6 +28,8 @@ public class TopStoryDetailActivity extends AppCompatActivity {
     TextView creator;
     @BindView(R.id.numberOfComments)
     TextView numberOfComments;
+    @BindView(R.id.url)
+    WebView webView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,5 +46,7 @@ public class TopStoryDetailActivity extends AppCompatActivity {
         score.setText(stringFormater.formatString(model.getScore().toString(), R.string.score));
         creator.setText(stringFormater.formatString(model.getBy(), R.string.creator));
         numberOfComments.setText(stringFormater.formatString(model.getDescendants().toString(), R.string.number_of_comments));
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.loadUrl(model.getUrl());
     }
 }

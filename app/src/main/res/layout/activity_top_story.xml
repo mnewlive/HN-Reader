@@ -9,8 +9,7 @@
         style="@style/TextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"/>
-
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/score"
@@ -27,6 +26,11 @@
     <TextView
         android:id="@+id/numberOfComments"
         style="@style/TextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <WebView
+        android:id="@+id/url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
