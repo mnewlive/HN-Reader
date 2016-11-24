@@ -47,8 +47,8 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.Vi
         viewHolder.storyScore.setText(String.valueOf(topStoriesList.get(i).getScore()));
         viewHolder.storyCreator.setText(topStoriesList.get(i).getBy());
         viewHolder.storyNumberOfComments.setText(String.valueOf(topStoriesList.get(i).getDescendants()));
-        SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT);
-        viewHolder.storyDate.setText(sdf.format(topStoriesList.get(i).getTime() * 1000L));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.DATE_FORMAT);
+        viewHolder.storyDate.setText(simpleDateFormat.format(topStoriesList.get(i).getTime() * 1000L));
         viewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

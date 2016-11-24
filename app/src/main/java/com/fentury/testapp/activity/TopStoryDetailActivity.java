@@ -11,6 +11,8 @@ import com.fentury.testapp.model.Model;
 import com.fentury.testapp.utils.Constants;
 import com.fentury.testapp.utils.StringFormater;
 
+import java.text.SimpleDateFormat;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -30,6 +32,16 @@ public class TopStoryDetailActivity extends AppCompatActivity {
     TextView numberOfComments;
     @BindView(R.id.url)
     WebView webView;
+    @BindView(R.id.id)
+    TextView id;
+    @BindView(R.id.type)
+    TextView type;
+    @BindView(R.id.time)
+    TextView time;
+    @BindView(R.id.kids)
+    TextView kids;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,7 +54,12 @@ public class TopStoryDetailActivity extends AppCompatActivity {
 
     private void populateTextViews() {
         StringFormater stringFormater = new StringFormater(this);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.DATE_FORMAT);
         name.setText(stringFormater.formatString(model.getTitle(), R.string.name));
+        kids.setText(stringFormater.formatString(model.getKids().toString(), R.string.kids));
+        id.setText(stringFormater.formatString(model.getId().toString(), R.string.id));
+        time.setText(stringFormater.formatString((simpleDateFormat.format(model.getTime() * 1000L)), R.string.time));
+        type.setText(stringFormater.formatString(model.getType(), R.string.type));
         score.setText(stringFormater.formatString(model.getScore().toString(), R.string.score));
         creator.setText(stringFormater.formatString(model.getBy(), R.string.creator));
         numberOfComments.setText(stringFormater.formatString(model.getDescendants().toString(), R.string.number_of_comments));
