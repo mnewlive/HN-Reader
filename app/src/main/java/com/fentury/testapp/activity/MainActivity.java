@@ -73,20 +73,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Integer>> call, Response<List<Integer>> response) {
                 topStories = response.body();
-                for (Integer id : topStories) {
-                    request.getTopStore(id).enqueue(new Callback<Model>() {
-                        @Override
-                        public void onResponse(Call<Model> call, Response<Model> response) {
-                            models.add(response.body());
-                            topStoriesAdapter.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void onFailure(Call<Model> call, Throwable t) {
-
-                        }
-                    });
-                }
+                loadDetails();
             }
 
             @Override
@@ -94,5 +81,22 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private void loadDetails(){
+        for (Integer id : topStories) {
+            request.getTopStore(id).enqueue(new Callback<Model>() {
+                @Override
+                public void onResponse(Call<Model> call, Response<Model> response) {
+                    models.add(response.body());
+                    topStoriesAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onFailure(Call<Model> call, Throwable t) {
+
+                }
+            });
+        }
     }
 }
