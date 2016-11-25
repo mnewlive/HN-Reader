@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private StoriesApi request;
     private List<Model> models = new ArrayList<>();
+    private int mLoadPosition = -1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,20 +85,24 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void loadDetails(){
-        for (Integer id : topStories) {
-            request.getTopStore(id).enqueue(new Callback<Model>() {
-                @Override
-                public void onResponse(Call<Model> call, Response<Model> response) {
-                    models.add(response.body());
-                    topStoriesAdapter.notifyDataSetChanged();
-                }
-
-                @Override
-                public void onFailure(Call<Model> call, Throwable t) {
-                    Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG).show();
-                }
-            });
+    private void loadDetails() {
+        mLoadPosition++;
+        if (mLoadPosition == topStories.size()) {
+            return;
         }
+        int id = topStories.get(mLoadPosition);
+        request.getTopStore(id).enqueue(new Callback<Model>() {
+            @Override
+            public void onResponse(Call<Model> call, Response<Model> response) {
+                models.add(response.body());
+                topStoriesAdapter.notifyDataSetChanged();
+                loadDetails();
+            }
+
+            @Override
+            public void onFailure(Call<Model> call, Throwable t) {
+                Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
