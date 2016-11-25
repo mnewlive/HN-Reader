@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<Model> call, Throwable t) {
-
+                    Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG).show();
                 }
             });
         }
