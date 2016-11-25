@@ -47,7 +47,7 @@ public class TopStoryDetailActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top_story);
-        model = getIntent().getParcelableExtra(Constants.KEY);
+        model = (Model) getIntent().getSerializableExtra("key");
         ButterKnife.bind(this);
         populateTextViews();
     }

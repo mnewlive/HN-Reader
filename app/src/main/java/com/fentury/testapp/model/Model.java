@@ -1,16 +1,14 @@
 
 package com.fentury.testapp.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Model implements Parcelable {
+public class Model implements Serializable {
 
     @SerializedName("by")
     @Expose
@@ -127,52 +125,8 @@ public class Model implements Parcelable {
                 '}';
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.by);
-        dest.writeValue(this.descendants);
-        dest.writeValue(this.id);
-        dest.writeList(this.kids);
-        dest.writeValue(this.score);
-        dest.writeValue(this.time);
-        dest.writeString(this.title);
-        dest.writeString(this.type);
-        dest.writeString(this.url);
-    }
-
     public Model() {
     }
-
-    protected Model(Parcel in) {
-        this.by = in.readString();
-        this.descendants = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.kids = new ArrayList<Integer>();
-        in.readList(this.kids, Integer.class.getClassLoader());
-        this.score = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.time = (Integer) in.readValue(Integer.class.getClassLoader());
-        this.title = in.readString();
-        this.type = in.readString();
-        this.url = in.readString();
-    }
-
-    public static final Creator<Model> CREATOR = new Creator<Model>() {
-        @Override
-        public Model createFromParcel(Parcel source) {
-            return new Model(source);
-        }
-
-        @Override
-        public Model[] newArray(int size) {
-            return new Model[size];
-        }
-    };
-
 
     public String getKidsAsString() {
         if (kids == null || kids.isEmpty()) {
