@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.fentury.testapp.R;
 import com.fentury.testapp.model.Model;
 import com.fentury.testapp.utils.Constants;
-import com.fentury.testapp.utils.StringFormater;
+import com.fentury.testapp.utils.StringFormatter;
 
 import java.text.SimpleDateFormat;
 
@@ -53,16 +53,16 @@ public class TopStoryDetailActivity extends AppCompatActivity {
     }
 
     private void populateTextViews() {
-        StringFormater stringFormater = new StringFormater(this);
+        StringFormatter stringFormatter = new StringFormatter(this);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.DATE_FORMAT);
-        name.setText(stringFormater.formatString(model.getTitle(), R.string.name));
-        kids.setText(stringFormater.formatString(model.getKidsAsString(), R.string.kids));
-        id.setText(stringFormater.formatString(model.getId().toString(), R.string.id));
-        time.setText(stringFormater.formatString((simpleDateFormat.format(model.getTime() * 1000L)), R.string.time));
-        type.setText(stringFormater.formatString(model.getType(), R.string.type));
-        score.setText(stringFormater.formatString(model.getScore().toString(), R.string.score));
-        creator.setText(stringFormater.formatString(model.getBy(), R.string.creator));
-        numberOfComments.setText(stringFormater.formatString(model.getDescendants().toString(), R.string.number_of_comments));
+        name.setText(stringFormatter.formatString(model.getTitle(), R.string.name));
+        kids.setText(stringFormatter.formatString(model.getKidsAsString(), R.string.kids));
+        id.setText(stringFormatter.formatString(model.getId().toString(), R.string.id));
+        time.setText(stringFormatter.formatString((simpleDateFormat.format(model.getTime() * 1000L)), R.string.time));
+        type.setText(stringFormatter.formatString(model.getType(), R.string.type));
+        score.setText(stringFormatter.formatString(model.getScore().toString(), R.string.score));
+        creator.setText(stringFormatter.formatString(model.getBy(), R.string.creator));
+        numberOfComments.setText(stringFormatter.formatString(model.getDescendants().toString(), R.string.number_of_comments));
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(model.getUrl());
     }

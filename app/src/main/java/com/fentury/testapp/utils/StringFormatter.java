@@ -6,10 +6,10 @@ import android.content.Context;
  * Created by Vadim on 20.11.2016.
  */
 
-public class StringFormater {
+public class StringFormatter {
     Context context;
 
-    public StringFormater(Context context) {
+    public StringFormatter(Context context) {
         this.context = context;
     }
 
