@@ -55,14 +55,14 @@ public class TopStoryDetailActivity extends AppCompatActivity {
     private void populateTextViews() {
         StringFormatter stringFormatter = new StringFormatter(this);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.DATE_FORMAT);
-        name.setText(stringFormatter.formatString(model.getTitle(), R.string.name));
-        kids.setText(stringFormatter.formatString(model.getKidsAsString(), R.string.kids));
-        id.setText(stringFormatter.formatString(model.getId().toString(), R.string.id));
-        time.setText(stringFormatter.formatString((simpleDateFormat.format(model.getTime() * 1000L)), R.string.time));
-        type.setText(stringFormatter.formatString(model.getType(), R.string.type));
-        score.setText(stringFormatter.formatString(model.getScore().toString(), R.string.score));
-        creator.setText(stringFormatter.formatString(model.getBy(), R.string.creator));
-        numberOfComments.setText(stringFormatter.formatString(model.getDescendants().toString(), R.string.number_of_comments));
+        name.setText(stringFormatter.formatString(R.string.name, model.getTitle()));
+        kids.setText(stringFormatter.formatString(R.string.kids, model.getKidsAsString()));
+        id.setText(stringFormatter.formatString(R.string.id, model.getId().toString()));
+        time.setText(stringFormatter.formatString(R.string.time, (simpleDateFormat.format(model.getTime() * 1000L))));
+        type.setText(stringFormatter.formatString(R.string.type, model.getType()));
+        score.setText(stringFormatter.formatString(R.string.score, model.getScore().toString()));
+        creator.setText(stringFormatter.formatString(R.string.creator, model.getBy()));
+        numberOfComments.setText(stringFormatter.formatString(R.string.number_of_comments, model.getDescendants().toString()));
         webView.getSettings().setJavaScriptEnabled(true);
         webView.loadUrl(model.getUrl());
     }

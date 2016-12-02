@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fentury.testapp">
 
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -24,7 +23,7 @@
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.fentury.testapp.activity.MainActivity"/>
+                android:value="com.fentury.testapp.activity.MainActivity" />
         </activity>
     </application>
 
