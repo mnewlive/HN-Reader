@@ -15,17 +15,12 @@ public class StringFormatter {
     }
 
     public String formatString(int resId, String str) {
-        //part1
         String result1 = "";
         try {
             result1 = context.getString(resId);
-        } catch(Resources.NotFoundException e) {
+        } catch (Resources.NotFoundException e) {
 
         }
-        //part2
-        String result2 = (str == null) ? "" : str;
-
-        //result
-        return  String.format("%s %s", result1, result2).trim();
+        return String.format("%s %s", result1, (str == null) ? "" : str).trim();
     }
 }
