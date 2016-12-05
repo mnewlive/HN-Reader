@@ -47,20 +47,20 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.Vi
         viewHolder.storyScore.setText(String.valueOf(topStoriesList.get(i).getScore()));
         viewHolder.storyCreator.setText(topStoriesList.get(i).getBy());
         viewHolder.storyNumberOfComments.setText(String.valueOf(topStoriesList.get(i).getDescendants()));
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.DATE_FORMAT);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.INSTANCE.getDATE_FORMAT());
         viewHolder.storyDate.setText(simpleDateFormat.format(topStoriesList.get(i).getTime() * 1000L));
         viewHolder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
                 SharedPreferences.Editor ed = sharedPreferences.edit();
-                ed.putInt(Constants.ID, i);
+                ed.putInt(Constants.INSTANCE.getID(), i);
                 ed.apply();
                 startActivity(viewHolder);
             }
         });
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        int id = sharedPreferences.getInt(Constants.ID, -1);
+        int id = sharedPreferences.getInt(Constants.INSTANCE.getID(), -1);
         if (id == i) {
             viewHolder.storyTitle.setTextColor(Color.GRAY);
             viewHolder.storyScore.setTextColor(Color.GRAY);
@@ -97,7 +97,7 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<TopStoriesAdapter.Vi
 
     public void startActivity(TopStoriesAdapter.ViewHolder viewHolder) {
         Intent intent = new Intent(context, TopStoryDetailActivity.class);
-        intent.putExtra(Constants.KEY, topStoriesList.get(viewHolder.getAdapterPosition()));
+        intent.putExtra(Constants.INSTANCE.getKEY(), topStoriesList.get(viewHolder.getAdapterPosition()));
         context.startActivity(intent);
     }
 }

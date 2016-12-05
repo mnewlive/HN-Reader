@@ -54,7 +54,7 @@ public class TopStoryDetailActivity extends AppCompatActivity {
 
     private void populateTextViews() {
         StringFormatter stringFormatter = new StringFormatter(this);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.DATE_FORMAT);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(Constants.INSTANCE.getDATE_FORMAT());
         name.setText(stringFormatter.formatString(R.string.name, model.getTitle()));
         kids.setText(stringFormatter.formatString(R.string.kids, model.getKidsAsString()));
         id.setText(stringFormatter.formatString(R.string.id, model.getId().toString()));
