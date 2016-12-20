@@ -16,10 +16,6 @@ class StringFormatter(val context: Context) {
         } catch (e: Resources.NotFoundException) {
 
         }
-
-        /* Elvis operator
-        val str1 = str ?: ""
-        */
         return String.format("%s %s", result1, str ?: "" ).trim { it <= ' ' }
     }
 }

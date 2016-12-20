@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initRetrofit() {
         retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.INSTANCE.getBASE_URl())
+                .baseUrl(Constants.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         request = retrofit.create(StoriesApi.class);

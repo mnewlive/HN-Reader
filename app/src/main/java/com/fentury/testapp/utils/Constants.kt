@@ -5,8 +5,8 @@ package com.fentury.testapp.utils
  */
 
 object Constants {
-    val BASE_URl = "https://hacker-news.firebaseio.com/"
-    val DATE_FORMAT = "MM/dd/yyyy HH:mm"
-    val KEY = "key"
-    val ID = "id"
+    const val BASE_URL = "https://hacker-news.firebaseio.com/"
+    const val DATE_FORMAT = "MM/dd/yyyy HH:mm"
+    const val KEY = "key"
+    const val ID = "id"
 }
