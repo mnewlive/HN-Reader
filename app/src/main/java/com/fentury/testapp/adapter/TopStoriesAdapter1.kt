@@ -12,7 +12,7 @@ import com.fentury.testapp.R
 import com.fentury.testapp.activity.TopStoryDetailActivity
 import com.fentury.testapp.model.Model
 import com.fentury.testapp.utils.Constants
-
+import kotlinx.android.synthetic.main.list_item.view.*
 import java.text.SimpleDateFormat
 
 /**
@@ -51,11 +51,11 @@ class TopStoriesAdapter(private val topStoriesList: List<Model>, private val con
         var storyDate: TextView
 
         init {
-            storyTitle = view.findViewById(R.id.storyTitle) as TextView
-            storyScore = view.findViewById(R.id.storyScore) as TextView
-            storyCreator = view.findViewById(R.id.storyCreator) as TextView
-            storyNumberOfComments = view.findViewById(R.id.storyNumberOfComments) as TextView
-            storyDate = view.findViewById(R.id.storyDate) as TextView
+            storyTitle = view.storyTitle
+            storyScore = view.storyScore
+            storyCreator = view.storyCreator
+            storyNumberOfComments = view.storyNumberOfComments
+            storyDate = view.storyDate
         }
     }
 }
