@@ -20,8 +20,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    var recyclerView: RecyclerView? = null
-    var emptyView: TextView? = null
+    private var recyclerView: RecyclerView? = null
+    private var emptyView: TextView? = null
     private var topStoriesAdapter: TopStoriesAdapter? = null
     private var topStories: List<Int> = ArrayList()
     private var retrofit: Retrofit? = null
